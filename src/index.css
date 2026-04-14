@@ -1,0 +1,53 @@
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #561010;
+  --border: #130e1d;
+  --code-bg: #f4f3ec;
+  --accent: #2c2631;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(22, 4, 36, 0.5);
+  --social-bg: rgba(28, 24, 2, 0.5);
+  --shadow:
+    rgba(53, 9, 9, 0.1) 0 10px 15px -3px, rgba(230, 86, 86, 0.05) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #11021b;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #300858;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(135, 75, 196, 0.5);
+    --social-bg: rgba(33, 37, 77, 0.5);
+    --shadow:
+      rgba(24, 2, 2, 0.4) 0 10px 15px -3px, rgba(159, 95, 95, 0.25) 0 4px 6px -2px;
+  }
+
+  #social .button-icon {
+    filter: invert(1) brightness(2);
+  }
+}
+
+
