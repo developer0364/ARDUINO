@@ -1,7 +1,7 @@
 :root {
   --text: #6b6375;
   --text-h: #08060d;
-  --bg: #561010;
+  --bg: #45bf51;
   --border: #130e1d;
   --code-bg: #f4f3ec;
   --accent: #2c2631;
@@ -34,7 +34,8 @@
   :root {
     --text: #9ca3af;
     --text-h: #f3f4f6;
-    --bg: #11021b;
+          background: linear-gradient(to bottom, var(--bg-dark), var(--bg-accent));
+      min-height: 100vh; /* Importante para que el fondo cubra toda la pantalla */
     --border: #2e303a;
     --code-bg: #1f2028;
     --accent: #300858;
@@ -43,6 +44,8 @@
     --social-bg: rgba(33, 37, 77, 0.5);
     --shadow:
       rgba(24, 2, 2, 0.4) 0 10px 15px -3px, rgba(159, 95, 95, 0.25) 0 4px 6px -2px;
+     --bg-dark: #1a0429;
+      --bg-accent: #59108d;
   }
 
   #social .button-icon {
