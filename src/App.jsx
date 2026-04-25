@@ -1,35 +1,21 @@
 import { useNavigate } from 'react-router-dom';
-import JugarDisplay from './jugarDisplay';
+import { Routes, Route } from 'react-router-dom';
+import JugarDisplay from './components/JugarDisplay';
 import './App.css';
+import Home from './components/Home';
+import Instrucciones from "./components/instrucciones";
+import ColorBends from './components/ColorBends';
 
 function App() {
-  const navigate = useNavigate(); 
-
-  const manejarClickJugar = () => {
-    navigate('/jugarDisplay'); 
-  };
+ 
 
   return (
-    /* El "main-wrapper" es el escenario completo */
-    <div className="main-wrapper">
+ <Routes>{/* Ruta para la página de inicio */}
       
-      {/* El encabezado principal */} 
-      <h1 className="title">BIENVENIDOS A LA TRIVIA</h1>
-      
-   
-      <p className="texto">SELECCIONA UNA OPCIÓN</p>
-
-      {/* Esta es la "bandeja" donde apoyamos los botones */}
-      <div className="contenedor-botones">
-        
-        <button>INSTRUCCIONES</button>
-        <button  onClick={manejarClickJugar}>
-          JUGAR</button>
-        <button >BLANK</button>
-      </div>
-
-    </div>
+      <Route path="/" element={<Home/>} />
+  <Route path="/JugarDisplay" element={<JugarDisplay />} />
+  <Route path="/instrucciones" element={<Instrucciones />} />
+  </Routes>
   );
 }
-// pendiente de alinear botones con texto superior
 export default App;

@@ -1,81 +1,119 @@
-/* 1. VARIABLES (El ropero donde guardamos los colores) */
 :root {
-  --fondo-oscuro: #1a0429;
-  --fondo-acento: #59108d;
+  --fondo-oscuro: #160e37;
+  --fondo-acento: #3945ed;
   --texto-claro: #f3f4f6;
-  --fuente-titulo: "Limelight", sans-serif;
+   --fuente-titulo: "Bebas Neue", sans-serif;
 }
 
-/* 2. EL CONTENEDOR PADRE (La caja que envuelve TODO) */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
 .main-wrapper {
   display: flex;
-  flex-direction: column; /* Apila Título -> Texto -> Botones */
-  justify-content: center; /* Centra todo verticalmente */
-  align-items: center;     /* Centra todo horizontalmente */
-  min-height: 100vh;       /* Que ocupe toda la pantalla de alto */
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center;     
+  min-height: 100vh;       
   width: 100%;
-  
-  /* El degradado de fondo que querías */
-  background: linear-gradient(to bottom, var(--fondo-oscuro), var(--fondo-acento));
+  position: relative;
+ 
 }
 
-/* 3. EL TÍTULO (Grande y arriba) */
 .title {
   font-family: var(--fuente-titulo);
-  font-size: 60px;
+  font-size: 82px;        /* un poco más grande, Bebas Neue lo aguanta bien */
+  letter-spacing: 4px;    /* Bebas Neue se luce con tracking */
   color: white;
-  margin-bottom: 10px; /* Espacio con el texto de abajo */
+  margin-bottom: 10px;
   text-align: center;
   filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.5));
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
-               0 0 20px rgba(181, 116, 224, 0.5),
-               0 0 30px rgba(221, 69, 170, 0.3)
 }
 
-/* 4. EL TEXTO DE INSTRUCCIÓN (El que dice SELECCIONA) */
 .texto {
   font-family: var(--fuente-titulo);
-  font-size: 25px;
+  font-size: 35px;
+  letter-spacing: 3px;
   color: #ccc;
-  margin-bottom: 40px; /* Espacio antes de los botones */
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
-               0 0 20px rgba(181, 116, 224, 0.5),
-               0 0 30px rgba(221, 69, 170, 0.3)
-  
+  margin-bottom: 40px;
 }
 
-/* 5. LA CAJA DE BOTONES (Fila de botones) */
 .contenedor-botones {
   display: flex;
   flex-direction: row;
-  gap: 30px;           /* Aumenté un poco el espacio para que respiren */
+  gap: 30px;          
   justify-content: center; 
   align-items: center;
   width: 100%; 
 }
 
-/* 6. EL BOTÓN (Estilo individual) */
 button {
-
-  width: 220px;        /* <--- CLAVE: Todos miden lo mismo para alinear el centro */
-  height: 60px;        /* Altura fija para simetría total */
-  border-radius: 12px; /* Un toque más moderno que el ovalado */
-  border: 2px solid #b574e0; /* Borde con el color de tu acento */
-  background: #1a0429;
+  width: 220px;        
+  height: 60px;        
+  border-radius: 12px; 
+  /* Eliminamos el borde negro y el degradado sólido */
+  border: 1px solid rgba(255, 255, 255, 0.3); 
+  background: rgba(255, 255, 255, 0.1); 
+  
+  /* Efecto de vidrio (blur) */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  
   color: white;
   font-family: var(--fuente-titulo);
-  font-size: 18px;
+  font-size: 25px;
   cursor: pointer;
-  transition: all 0.4s ease; /* Transición suave para el brillo */
-  /
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 button:hover {
-  transform: scale(1.1); /* Se agranda un poquito al tocarlo */
-  background: #f3f4f6;
-  color: black;
-
-  
+  transform: scale(1.1); 
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: white; 
 }
 
 
+.cuarenta {
+  font-size: 40px;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 50px;
+}
+
+.blackbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  margin-top: 15px;
+  justify-content: flex-start;
+  
+ 
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(82, 39, 255, 0.25);
+  
+  border-radius: 40px;
+  min-height: 400px;
+  width: 800px;
+  max-width: 90%;
+}
+.icono {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 50px;
+  height: auto;
+  cursor: pointer;
+  z-index: 100;
+}
