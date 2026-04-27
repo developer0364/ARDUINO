@@ -15,9 +15,14 @@ export default function Instrucciones() {
 
       {/* Contenido */}
       <div className="main-wrapper top" style={{ position: 'relative', zIndex: 1 }}>
-        <h1 className="title cuarenta">REGLAS Y PUNTOS</h1>
+        <h1 className="title cuarenta">REGLAS E INSTRUCCIONES</h1>
         <div className="blackbox">
-          <p className="cuarenta">PUNTAJES</p>
+          <p className="cuarenta" >INSTRUCCIONES</p>
+          <p className="texto-instrucciones">
+    Selecciona tu temática y dificultad para responder un total de 5 preguntas. 
+    Cada acierto suma 10 puntos. Si fallas, verás la corrección en tiempo real. 
+    ¡Al terminar, descubre tu puntaje final y vuelve a intentarlo!
+  </p>
         </div>
       </div>
 

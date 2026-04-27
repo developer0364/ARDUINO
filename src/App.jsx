@@ -5,17 +5,20 @@ import './App.css';
 import Home from './components/Home';
 import Instrucciones from "./components/instrucciones";
 import ColorBends from './components/ColorBends';
+import { GameProviderz } from './components/datos';
 
 function App() {
  
 
   return (
- <Routes>{/* Ruta para la página de inicio */}
+ <GameProviderz>
+ <Routes>
       
       <Route path="/" element={<Home/>} />
   <Route path="/JugarDisplay" element={<JugarDisplay />} />
   <Route path="/instrucciones" element={<Instrucciones />} />
   </Routes>
+  </GameProviderz>
   );
 }
 export default App;

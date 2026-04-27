@@ -78,6 +78,7 @@ button:hover {
 
 .cuarenta {
   font-size: 40px;
+  color:white;
 }
 
 .top {
@@ -116,4 +117,9 @@ button:hover {
   height: auto;
   cursor: pointer;
   z-index: 100;
+}
+.texto-instrucciones{
+  color:white;
+  font-size:20px;
+  
 }
