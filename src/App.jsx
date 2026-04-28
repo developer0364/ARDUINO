@@ -6,9 +6,15 @@ import Home from './components/Home';
 import Instrucciones from "./components/instrucciones";
 import ColorBends from './components/ColorBends';
 import { GameProviderz } from './components/datos';
+import { useEffect } from 'react';
+import { fetchCategories } from './services/api';
 
 function App() {
  
+useEffect(() => {
+  const categories = fetchCategories();
+  console.log(categories);
+}, []);
 
   return (
  <GameProviderz>
