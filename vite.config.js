@@ -1,17 +1,25 @@
-import path from "path"
 import { defineConfig } from 'vite'
-import react, { reactCompilerPreset } from '@vitejs/plugin-react'
-import babel from '@rolldown/plugin-babel'
+import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    babel({ presets: [reactCompilerPreset()] })
-  ],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
+  plugins: [react()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://opentdb.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+        configure: (proxy) => {
+          proxy.on('error', (err) => {
+            console.error('Proxy error:', err);
+          });
+          proxy.on('proxyRes', (proxyRes, req) => {
+            if (proxyRes.statusCode === 429) {
+              console.warn('⚠️ OpenTDB rate limit (429):', req.url);
+            }
+          });
+        },
+      },
     },
   },
 })

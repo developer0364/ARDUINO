@@ -11,10 +11,7 @@ import { fetchCategories } from './services/api';
 
 function App() {
  
-useEffect(() => {
-  const categories = fetchCategories();
-  console.log(categories);
-}, []);
+
 
   return (
  <GameProviderz>

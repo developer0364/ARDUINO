@@ -2,20 +2,16 @@ import { useNavigate } from 'react-router-dom';
 import ColorBends from './ColorBends';
 import DropdownMenu from './menudesplegable';
 import { useDatosTrivia } from './datos';
-const OPCIONES_TEMATICA = [
-  { value: 'hardware', label: 'HARDWARE' },
-  { value: 'software', label: 'SOFTWARE' },
-];
-
-const OPCIONES_DIFICULTAD = [
-  { value: 'facil',   label: 'FÁCIL'   },
-  { value: 'medio',   label: 'MEDIO'   },
-  { value: 'dificil', label: 'DIFÍCIL' },
-];
+import { OPCIONES_DIFICULTAD } from '../constants/config';
 
 function Home() {
   const navegar = useNavigate();
-  const { Tematica, setTematica, Dificultad, setDificultad } = useDatosTrivia();
+  const {
+    Tematica, setTematica,
+    Dificultad, setDificultad,
+    categorias,
+    cargandoCategorias,
+  } = useDatosTrivia();
 
   const manejarInicioJuego = () => {
     if (!Tematica || !Dificultad) {
@@ -26,15 +22,15 @@ function Home() {
   };
 
   const seleccionCompleta = Tematica && Dificultad;
+  const labelTematica = categorias.find(c => c.value === Tematica)?.label;
 
   return (
     <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden', backgroundColor: 'black' }}>
-
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         <ColorBends speed={0.4} colors={["#00CFFF", "#0066FF"]} />
       </div>
 
-      <div className="main-wrapper" style={{ position: 'relative', zIndex: 1 }}>
+      <div className="main-wrapper" style={{ position: 'relative', zIndex: 1, padding: '20px' }}>
         <h1 className="title">BIENVENIDOS A LA TRIVIA</h1>
         <p className="texto">SELECCIONA UNA OPCIÓN</p>
 
@@ -42,8 +38,8 @@ function Home() {
           <button onClick={() => navegar('/instrucciones')}>INSTRUCCIONES</button>
 
           <DropdownMenu
-            etiqueta="TEMÁTICA"
-            opciones={OPCIONES_TEMATICA}
+            etiqueta={cargandoCategorias ? "CARGANDO..." : "TEMÁTICA"}
+            opciones={categorias}
             seleccionado={Tematica}
             alSeleccionar={setTematica}
           />
@@ -66,16 +62,18 @@ function Home() {
           </button>
         </div>
 
-        { (Tematica || Dificultad) && (
+        {(Tematica || Dificultad) && (
           <p style={{
             fontFamily: 'var(--fuente-titulo)',
             color: 'rgba(255,255,255,0.55)',
-            fontSize: '16px',
-            letterSpacing: '3px',
+            fontSize: '14px',
+            letterSpacing: '2px',
             marginTop: '22px',
+            textAlign: 'center',
+            padding: '0 16px',
           }}>
-            {Tematica ? `TEMÁTICA: ${Tematica.toUpperCase()}` : ''}
-            {Tematica && Dificultad ? '  ·  ' : ''}
+            {labelTematica ? `TEMÁTICA: ${labelTematica}` : ''}
+            {labelTematica && Dificultad ? '  ·  ' : ''}
             {Dificultad ? `DIFICULTAD: ${Dificultad.toUpperCase()}` : ''}
           </p>
         )}
