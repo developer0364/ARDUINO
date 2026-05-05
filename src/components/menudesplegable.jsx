@@ -3,16 +3,26 @@ import './menudespegable.css';
 
 export default function DropdownMenu({ etiqueta, opciones, seleccionado, alSeleccionar }) {
   const [abierto, setAbierto] = useState(false);
+  const [fijado, setFijado] = useState(false);
+
+  const panelVisible = abierto || fijado;
 
   const opcionActual = opciones.find(o => o.value === seleccionado);
 
+  const handleClick = () => {
+    setFijado(f => !f);
+  };
+
   return (
-    <div 
+    <div
       className="contenedor-desplegable"
       onMouseEnter={() => setAbierto(true)}
       onMouseLeave={() => setAbierto(false)}
     >
-      <button className={`boton-desplegable ${seleccionado ? 'boton-desplegable--activo' : ''}`}>
+      <button
+        className={`boton-desplegable ${seleccionado ? 'boton-desplegable--activo' : ''}`}
+        onClick={handleClick}
+      >
         <div className="etiqueta-desplegable">
           {opcionActual ? (
             <>
@@ -21,16 +31,17 @@ export default function DropdownMenu({ etiqueta, opciones, seleccionado, alSelec
             </>
           ) : etiqueta}
         </div>
-        <span className={`flecha-indicadora ${abierto ? 'flecha--arriba' : ''}`}>▼</span>
+        <span className={`flecha-indicadora ${panelVisible ? 'flecha--arriba' : ''}`}>▼</span>
       </button>
 
-      <div className={`panel-desplegable ${abierto ? 'panel--abierto' : ''}`}>
+      <div className={`panel-desplegable ${panelVisible ? 'panel--abierto' : ''}`}>
         {opciones.map(opcion => (
           <button
             key={opcion.value}
             className={`opcion-item ${seleccionado === opcion.value ? 'opcion--marcada' : ''}`}
             onClick={() => {
               alSeleccionar(opcion.value);
+              setFijado(false);
               setAbierto(false);
             }}
           >

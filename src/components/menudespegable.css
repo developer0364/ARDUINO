@@ -45,6 +45,7 @@
   line-height: 1;
   flex: 1;
   overflow: hidden;
+  
 }
 
 .sub-etiqueta {
@@ -74,7 +75,7 @@
   transform: rotate(180deg);
 }
 
-/* ── Panel desplegable ── */
+
 .panel-desplegable {
   position: absolute;
   top: calc(100% + 6px);
@@ -84,7 +85,7 @@
 
   width: min(260px, 92vw);
 
-  /* Altura máxima + scroll para la lista larga de categorías */
+
   max-height: 280px;
   overflow-y: auto;
   scrollbar-width: thin;
@@ -120,13 +121,13 @@
   transform: translateX(-50%) scaleY(1);
 }
 
-/* ── Ítems de la lista ── */
+
 .opcion-item {
   width: 100%;
   min-height: 44px;
   border: none;
   background: transparent;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 253, 253, 0.85);
   font-family: var(--fuente-titulo);
   font-size: clamp(13px, 2vw, 17px);
   letter-spacing: 1px;
@@ -139,7 +140,7 @@
   transition: background 0.15s ease;
   box-shadow: none;
   transform: none !important;
-  /* texto largo se corta con … */
+ 
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -162,7 +163,6 @@
   margin-left: 6px;
 }
 
-/* ── Mobile: el panel puede aparecer hacia arriba si no hay espacio ── */
 @media (max-width: 480px) {
   .panel-desplegable {
     max-height: 220px;

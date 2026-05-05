@@ -1,3 +1,43 @@
+
+.jugar-screen {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: black;
+}
+
+.jugar-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.jugar-content {
+  position: relative;
+  z-index: 1;
+  padding: 16px;
+}
+
+
+.jugar-btn-volver {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  z-index: 100;
+  width: auto !important;
+  height: auto !important;
+  padding: 8px 16px !important;
+  font-size: 14px !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(10px);
+  border-radius: 8px !important;
+  color: white;
+  cursor: pointer;
+  font-family: var(--fuente-titulo);
+}
+
 .encabezado-trivia {
   display: flex;
   align-items: center;
@@ -22,7 +62,7 @@
   color: rgba(255, 255, 255, 0.9);
 }
 
-/* ── Barra de progreso ── */
+
 .barra-progreso-fondo {
   width: min(820px, 92vw);
   height: 4px;
@@ -39,7 +79,6 @@
   transition: width 0.4s ease;
 }
 
-/* ── Caja de la trivia ── */
 .caja-trivia {
   width: min(820px, 92vw);
   min-height: auto;
@@ -47,7 +86,7 @@
   gap: 0;
 }
 
-/* ── Texto pregunta ── */
+
 .pregunta-texto {
   font-family: var(--fuente-titulo);
   font-size: clamp(16px, 3vw, 26px);
@@ -58,7 +97,7 @@
   line-height: 1.35;
 }
 
-/* ── Grid de opciones ── */
+
 .contenedor-opciones {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -84,7 +123,6 @@
   transform: scale(1.02) !important;
 }
 
-/* ── Estados de respuesta ── */
 .opcion-correcta {
   background: rgba(0, 220, 100, 0.35) !important;
   border-color: rgba(0, 220, 100, 0.8) !important;
@@ -104,7 +142,7 @@
   pointer-events: none;
 }
 
-/* ── Retroalimentación ── */
+
 .mensaje-retroalimentacion {
   margin-top: 18px;
   padding: 10px 16px;
@@ -136,7 +174,7 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Botón siguiente ── */
+
 .boton-siguiente {
   margin-top: 16px !important;
   width: auto !important;
@@ -157,14 +195,22 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Pantalla resultado final ── */
+
 .caja-resultado {
   text-align: center;
   gap: 12px;
 }
 
+.resultado-screen {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: black;
+}
+
 .meta-resultado {
-  color: rgba(255,255,255,0.5);
+  color: rgba(255, 255, 255, 0.5);
   font-family: var(--fuente-titulo);
   font-size: clamp(12px, 2vw, 16px);
   letter-spacing: 2px;
@@ -181,20 +227,48 @@
   filter: drop-shadow(0 0 20px rgba(0, 207, 255, 0.6));
 }
 
-/* ── Mobile ── */
+.resultado-botones {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+.sin-config-box {
+  text-align: center;
+  gap: 20px;
+}
+
+
+.error-box {
+  text-align: center;
+  gap: 20px;
+}
+
+
+.cargando-texto {
+  color: white;
+  font-family: var(--fuente-titulo);
+  font-size: 24px;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+
 @media (max-width: 480px) {
   .contenedor-opciones {
-    grid-template-columns: 1fr;   /* una columna en pantallas chicas */
+    grid-template-columns: 1fr;
   }
 
   .encabezado-trivia {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end;
     gap: 2px;
   }
 
   .info-trivia {
-    /* la categoría puede ser muy larga, la truncamos */
     max-width: 90vw;
     white-space: nowrap;
     overflow: hidden;

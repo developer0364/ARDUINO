@@ -50,7 +50,7 @@ export default function JugarDisplay() {
   const [respondido, setRespondido] = useState(false);
   const [juegoTerminado, setJuegoTerminado] = useState(false);
 
-  // Guarda la clave de la última carga para evitar doble fetch (React StrictMode / 429)
+
   const ultimaCargaRef = useRef('');
 
   const cargarPreguntas = useCallback(async () => {
@@ -78,7 +78,7 @@ export default function JugarDisplay() {
   useEffect(() => {
     if (!Tematica || !Dificultad) return;
 
-    // Clave única por combinación — evita el doble montaje de StrictMode
+    
     const clave = `${Tematica}-${Dificultad}`;
     if (ultimaCargaRef.current === clave) return;
     ultimaCargaRef.current = clave;
@@ -148,7 +148,7 @@ export default function JugarDisplay() {
     setOpcionElegida(null);
     setRespondido(false);
     setJuegoTerminado(false);
-    ultimaCargaRef.current = ''; // Limpia la protección para permitir recargar
+    ultimaCargaRef.current = ''; 
     await cargarPreguntas();
   };
 
@@ -177,7 +177,7 @@ export default function JugarDisplay() {
       <button
         onClick={() => navegar('/')}
         style={{
-          position: 'absolute', top: '16px', left: '16px', zIndex: 100,
+          position: 'absolute', bottom: '16px', left: '16px', zIndex: 100,
           width: 'auto', height: 'auto', padding: '8px 16px', fontSize: '14px',
           background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.3)',
           backdropFilter: 'blur(10px)', borderRadius: '8px',

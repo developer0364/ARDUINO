@@ -15,10 +15,9 @@ export const fetchCategories = async () => {
   }
 };
 
-// Traduce todas las preguntas de una sola llamada a Claude
 async function traducirPreguntas(results) {
   try {
-    // Armamos un JSON minimalista para no desperdiciar tokens
+    
     const payload = results.map((q, i) => ({
       i,
       q: q.question,
@@ -50,11 +49,11 @@ ${JSON.stringify(payload)}`,
 
     const data = await response.json();
     const texto = data.content?.find(b => b.type === "text")?.text?.trim();
-    if (!texto) return results; // si falla, devuelve original
+    if (!texto) return results; 
 
     const traducido = JSON.parse(texto);
 
-    // Reconstruimos el array original con los campos traducidos
+    
     return results.map((q, i) => {
       const t = traducido.find(x => x.i === i);
       if (!t) return q;
@@ -67,7 +66,7 @@ ${JSON.stringify(payload)}`,
     });
   } catch (error) {
     console.error("Error traduciendo preguntas:", error);
-    return results; // si falla la traducción, muestra en inglés antes que romperse
+    return results; 
   }
 }
 
@@ -77,12 +76,11 @@ export const fetchQuestions = async (category, difficulty) => {
     const response = await fetch(url);
     const data = await response.json();
 
-    // response_code 0 = OK, cualquier otro = error
+    
     if (!data || data.response_code !== 0 || !data.results?.length) {
       return data;
     }
 
-    // Traducimos antes de devolver
     const resultadosTraducidos = await traducirPreguntas(data.results);
 
     return {

@@ -36,8 +36,7 @@ export function GameProviderz({ children }) {
   const [categorias, setCategorias] = useState([]);
   const [cargandoCategorias, setCargandoCategorias] = useState(true);
 
-  // useRef evita que React StrictMode (que monta dos veces en desarrollo)
-  // dispare dos fetchs al mismo tiempo → causa 429 en OpenTDB
+
   const yaCargoRef = useRef(false);
 
   useEffect(() => {

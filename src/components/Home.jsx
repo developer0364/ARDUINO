@@ -3,6 +3,7 @@ import ColorBends from './ColorBends';
 import DropdownMenu from './menudesplegable';
 import { useDatosTrivia } from './datos';
 import { OPCIONES_DIFICULTAD } from '../constants/config';
+import './Home.css';
 
 function Home() {
   const navegar = useNavigate();
@@ -13,6 +14,7 @@ function Home() {
     cargandoCategorias,
   } = useDatosTrivia();
 
+  
   const manejarInicioJuego = () => {
     if (!Tematica || !Dificultad) {
       alert('Seleccioná una TEMÁTICA y una DIFICULTAD antes de jugar.');
@@ -25,12 +27,12 @@ function Home() {
   const labelTematica = categorias.find(c => c.value === Tematica)?.label;
 
   return (
-    <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden', backgroundColor: 'black' }}>
-      <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+    <div className="home-screen">
+      <div className="home-background">
         <ColorBends speed={0.4} colors={["#00CFFF", "#0066FF"]} />
       </div>
 
-      <div className="main-wrapper" style={{ position: 'relative', zIndex: 1, padding: '20px' }}>
+      <div className="main-wrapper home-content">
         <h1 className="title">BIENVENIDOS A LA TRIVIA</h1>
         <p className="texto">SELECCIONA UNA OPCIÓN</p>
 
@@ -63,15 +65,7 @@ function Home() {
         </div>
 
         {(Tematica || Dificultad) && (
-          <p style={{
-            fontFamily: 'var(--fuente-titulo)',
-            color: 'rgba(255,255,255,0.55)',
-            fontSize: '14px',
-            letterSpacing: '2px',
-            marginTop: '22px',
-            textAlign: 'center',
-            padding: '0 16px',
-          }}>
+          <p className="home-seleccion-actual">
             {labelTematica ? `TEMÁTICA: ${labelTematica}` : ''}
             {labelTematica && Dificultad ? '  ·  ' : ''}
             {Dificultad ? `DIFICULTAD: ${Dificultad.toUpperCase()}` : ''}

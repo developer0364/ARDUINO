@@ -21,7 +21,6 @@ html, body, #root {
   box-sizing: border-box;
 }
 
-/* ── Título principal ── */
 .title {
   font-family: var(--fuente-titulo);
   font-size: clamp(36px, 8vw, 82px);
