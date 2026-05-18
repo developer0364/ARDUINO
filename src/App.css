@@ -1,85 +1,137 @@
 :root {
-  /* Solo las variables que realmente usas */
-  --text: #6b6375;
-  --text-h: #030109;
-  --bg-light: #000000; /* El verde que elegiste */
-  --accent: #290f2e;
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  
-  font: 18px/145% var(--sans);
-  color: var(--text);
-  background-color: var(--bg-light); /* Fondo para modo claro */
+  --fondo-oscuro: #160e37;
+  --fondo-acento: #3945ed;
+  --texto-claro: #f3f4f6;
+  --fuente-titulo: "Bebas Neue", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-dark: #1a0429;
-    --bg-accent: #59108d;
-    --text: #f3f4f6;
-  }
+html, body, #root {
+  height: 100%;
+  margin: 0;
 }
 
-/* AQUÍ es donde debe ir el fondo, no en el :root */
 .main-wrapper {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   width: 100%;
-  border: 0.5px solid black;
-  /* Aplicamos el degradado solo en modo oscuro si quieres */
-}
-
-@media (prefers-color-scheme: dark) {
-  .main-wrapper {
-    background: linear-gradient(to bottom, var(--bg-dark), var(--bg-accent));
-  }
+  position: relative;
+  box-sizing: border-box;
 }
 
 .title {
-  margin-top: 50px; /* Bajé el margen, 250px era demasiado y se iba de pantalla */
+  font-family: var(--fuente-titulo);
+  font-size: clamp(36px, 8vw, 82px);
+  letter-spacing: clamp(1px, 1vw, 4px);
+  color: rgb(255, 255, 255);
+  margin-bottom: 10px;
   text-align: center;
-  font-weight: bold;
-  font-size: 60px;
-  color: var(--text-h);
-  font-family: "Limelight", sans-serif;
-  filter: drop-shadow(2px 4px 6px rgba(255, 255, 255, 0.5));
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.5));
+  padding: 0 12px;
+  line-height: 1.1;
 }
 
 .texto {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(18px, 4vw, 35px);
+  letter-spacing: clamp(1px, 1vw, 3px);
+  color: #ccc;
+  margin-bottom: 28px;
   text-align: center;
-  margin: 30px;
-  font-size: 30px;
-  font-weight: bold;
-  font-family: "Limelight", sans-serif;
-  color:#000000;
-  filter: drop-shadow(2px 4px 6px rgba(255, 255, 255, 0.5));
 }
 
+/* ── Botones de la home (INSTRUCCIONES, JUGAR, etc.) ── */
 .contenedor-botones {
   display: flex;
-  justify-content:center; 
   flex-direction: row;
+  flex-wrap: wrap;          /* en mobile se parte en filas */
+  gap: 16px;
+  justify-content: center;
   align-items: center;
-  gap: 15px;
-  margin-top: 25px;
+  width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 
 button {
-  padding: 15px 30px;
-  font-size: 1.2rem;
-  background:linear-gradient(to bottom, #20032c, #360255) ;
-  color: rgb(255, 255, 255);
-  border: none;
-  border-radius: 50px;
+  width: 200px;
+  height: 56px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: white;
+  font-family: var(--fuente-titulo);
+  font-size: clamp(16px, 2.5vw, 22px);
   cursor: pointer;
-  transition: 0.3s;
-  filter: drop-shadow(2px 4px 6px rgba(255, 255, 255, 0.5));
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 button:hover {
-  background-color: rgb(106, 106, 106);
-  color: #000000;
-  transform: scale(1.1);
+  transform: scale(1.06);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: white;
+}
+
+/* ── Utilitarios ── */
+.cuarenta {
+  font-size: clamp(24px, 5vw, 40px);
+  color: white;
+  font-family: var(--fuente-titulo);
+  text-align: center;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: clamp(60px, 8vh, 80px);
+}
+
+/* ── Caja glassmorphism (instrucciones, resultados, etc.) ── */
+.blackbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(20px, 4vw, 40px);
+  margin-top: 15px;
+  justify-content: flex-start;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(82, 39, 255, 0.25);
+
+  border-radius: 24px;
+  min-height: 200px;
+  width: min(800px, 92vw);   /* nunca más ancho que la pantalla */
+  box-sizing: border-box;
+}
+
+.texto-instrucciones {
+  color: white;
+  font-size: clamp(14px, 2.5vw, 20px);
+  text-align: center;
+  line-height: 1.5;
+  padding: 0 8px;
+}
+
+/* ── Mobile ── */
+@media (max-width: 480px) {
+  .contenedor-botones {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  button {
+    width: min(320px, 88vw);
+    height: 52px;
+  }
 }

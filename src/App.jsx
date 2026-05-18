@@ -1,27 +1,27 @@
-import { useNavigate } from 'react-router-dom'; // <--- ¿Tenías esta línea?
+import { useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import JugarDisplay from './components/JugarDisplay';
 import './App.css';
+import Home from './components/Home';
+import Instrucciones from "./components/instrucciones";
+import ColorBends from './components/ColorBends';
+import { GameProviderz } from './components/datos';
+import { useEffect } from 'react';
+import { fetchCategories } from './services/api';
 
 function App() {
-  const navigate = useNavigate();
+ 
 
-  const manejarClickJugar = () => {
-    navigate('/jugarDisplay');
-  };
 
   return (
-    <div>
-      <div className="main-wrapper">
-        <h1 className="title">BIENVENIDOS A LA TRIVIA</h1>
-        <p className="texto">SELECCIONA</p>
-
-        <div className="contenedor-botones">
-          <button onClick={manejarClickJugar}>JUGAR</button>
-          <button>INSTRUCCIONES</button>
-          <button>BLANK</button>
-        </div>
-      </div>
-    </div>
+ <GameProviderz>
+ <Routes>
+      
+      <Route path="/" element={<Home/>} />
+  <Route path="/JugarDisplay" element={<JugarDisplay />} />
+  <Route path="/instrucciones" element={<Instrucciones />} />
+  </Routes>
+  </GameProviderz>
   );
 }
-
 export default App;
