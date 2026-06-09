@@ -1,32 +1,27 @@
-#include <DigiCDC.h>
+#include <DigiUSB.h>
 
-const int VERDE_A = 0;
-const int VERDE_B = 1;
-const int ROJO    = 4;
+const int VERDE = 0;
+const int ROJO  = 4;
 
 void setup() {
-  SerialUSB.begin();
-  pinMode(VERDE_A, OUTPUT);
-  pinMode(VERDE_B, OUTPUT);
-  pinMode(ROJO,    OUTPUT);
-  digitalWrite(VERDE_A, LOW);
-  digitalWrite(VERDE_B, LOW);
-  digitalWrite(ROJO,    LOW);
+  DigiUSB.begin();
+  pinMode(VERDE, OUTPUT);
+  pinMode(ROJO,  OUTPUT);
+  digitalWrite(VERDE, LOW);
+  digitalWrite(ROJO,  LOW);
 }
 
 void loop() {
-  SerialUSB.delay(10);
-  if (SerialUSB.available()) {
-    char cmd = SerialUSB.read();
+  DigiUSB.refresh();
+  if (DigiUSB.available()) {
+    int cmd = DigiUSB.read();
     if (cmd == 'G') {
-      digitalWrite(VERDE_A, HIGH);
-      digitalWrite(VERDE_B, HIGH);
-      SerialUSB.delay(2000);
-      digitalWrite(VERDE_A, LOW);
-      digitalWrite(VERDE_B, LOW);
+      digitalWrite(VERDE, HIGH);
+      DigiUSB.delay(4000);
+      digitalWrite(VERDE, LOW);
     } else if (cmd == 'R') {
       digitalWrite(ROJO, HIGH);
-      SerialUSB.delay(2000);
+      DigiUSB.delay(4000);
       digitalWrite(ROJO, LOW);
     }
   }

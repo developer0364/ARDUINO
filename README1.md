@@ -27,13 +27,38 @@ La app puede conectarse opcionalmente a un ATtiny85 Digispark vía USB para ence
 
 ### Configuración de Arduino IDE
 
-1. Abrir Arduino IDE → `Archivo > Preferencias`
-2. En *URLs adicionales de gestor de tarjetas*, agregar:
+> ⚠️ **PENDIENTE (2026-06-09):** Upload al Digispark no funciona aún. Ver estado abajo.
+
+1. Instalar **Arduino IDE 2.3.9** desde arduino.cc/en/software (versión `.exe`, NO Windows Store — el Store bloquea acceso USB a micronucleus)
+2. Abrir Arduino IDE → `File > Preferences`
+3. En *Additional boards manager URLs*, agregar:
    ```
-   http://digistump.com/package_digistump_index.json
+   https://raw.githubusercontent.com/ArminJo/DigistumpArduino/master/package_digistump_index.json
    ```
-3. Ir a `Herramientas > Placa > Gestor de tarjetas` → buscar **Digistump AVR Boards** → instalar
-4. Seleccionar placa: `Herramientas > Placa > Digispark (Default - 16.5mhz)`
+   (digistump.com está caído — usar esta URL de GitHub)
+4. `Tools > Board > Boards Manager` → buscar **Digistump AVR** → instalar **Digistump AVR Boards 1.7.5**
+5. El post-install script es bloqueado (normal en Windows) — instalar driver manualmente:
+   - Navegar a `C:\Users\Dev\Documents\ArduinoData\packages\digistump\tools\micronucleus\2.6\Digistump_Drivers\`
+   - Ejecutar `DPinst64.exe` como Administrador
+6. Seleccionar placa: `Tools > Board > Digistump AVR Boards > Digispark`
+7. Seleccionar clock: `Tools > Clock > 16.5 MHz - For V-USB` (necesario para DigiCDC)
+8. Instalar driver WinUSB via **Zadig 2.9** (zadig.akeo.ie):
+   - Enchufar Digispark
+   - `Options > List All Devices`
+   - Seleccionar **Digispark Bootloader**
+   - Driver destino: **WinUSB** → Replace Driver
+
+### Estado pendiente del upload
+
+- **Compilación**: OK (3696 bytes, 55% flash)
+- **Micronucleus**: corre y muestra "Please plug in device..." pero no detecta el Digispark
+- **Driver instalado**: WinUSB via Zadig (reemplazó libusb0)
+- **Dispositivo**: aparece en Administrador de dispositivos bajo USB
+- **Próximo paso a probar**: correr micronucleus directamente desde PowerShell como Admin:
+  ```
+  & "C:\Users\Dev\Documents\ArduinoData\packages\digistump\tools\micronucleus\2.6\micronucleus.exe" --no-ansi --timeout 60 --run "C:\Users\Dev\AppData\Local\Temp\arduino_build_951612\sketch_jun09a.ino.hex"
+  ```
+  Enchufar Digispark cuando diga "Please plug in". Ver si da error específico.
 
 ### Cargar el sketch
 
