@@ -42,11 +42,10 @@ html, body, #root {
   text-align: center;
 }
 
-/* ── Botones de la home (INSTRUCCIONES, JUGAR, etc.) ── */
 .contenedor-botones {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;          /* en mobile se parte en filas */
+  flex-wrap: wrap;
   gap: 16px;
   justify-content: center;
   align-items: center;
@@ -78,7 +77,6 @@ button:hover {
   color: white;
 }
 
-/* ── Utilitarios ── */
 .cuarenta {
   font-size: clamp(24px, 5vw, 40px);
   color: white;
@@ -94,7 +92,6 @@ button:hover {
   padding-top: clamp(60px, 8vh, 80px);
 }
 
-/* ── Caja glassmorphism (instrucciones, resultados, etc.) ── */
 .blackbox {
   display: flex;
   flex-direction: column;
@@ -111,7 +108,7 @@ button:hover {
 
   border-radius: 24px;
   min-height: 200px;
-  width: min(800px, 92vw);   /* nunca más ancho que la pantalla */
+  width: min(800px, 92vw);
   box-sizing: border-box;
 }
 
@@ -123,7 +120,6 @@ button:hover {
   padding: 0 8px;
 }
 
-/* ── Mobile ── */
 @media (max-width: 480px) {
   .contenedor-botones {
     flex-direction: column;

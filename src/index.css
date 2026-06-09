@@ -35,7 +35,7 @@
     --text: #9ca3af;
     --text-h: #f3f4f6;
           background: linear-gradient(to bottom, var(--bg-dark), var(--bg-accent));
-      min-height: 100vh; /* Importante para que el fondo cubra toda la pantalla */
+      min-height: 100vh;
     --border: #2e303a;
     --code-bg: #1f2028;
     --accent: #300858;

@@ -1,29 +1,29 @@
-
-.jugar-screen {
-  position: relative;
-  width: 100vw;
-  min-height: 100vh;
-  overflow: hidden;
-  background-color: black;
-}
-
-.jugar-background {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
 .jugar-content {
-  position: relative;
-  z-index: 1;
   padding: 16px;
 }
-
 
 .jugar-btn-volver {
   position: absolute;
   bottom: 16px;
   left: 16px;
+  z-index: 100;
+  width: auto !important;
+  height: auto !important;
+  padding: 8px 16px !important;
+  font-size: 14px !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(10px);
+  border-radius: 8px !important;
+  color: white;
+  cursor: pointer;
+  font-family: var(--fuente-titulo);
+}
+
+.jugar-btn-arduino {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
   z-index: 100;
   width: auto !important;
   height: auto !important;
@@ -62,7 +62,6 @@
   color: rgba(255, 255, 255, 0.9);
 }
 
-
 .barra-progreso-fondo {
   width: min(820px, 92vw);
   height: 4px;
@@ -86,7 +85,6 @@
   gap: 0;
 }
 
-
 .pregunta-texto {
   font-family: var(--fuente-titulo);
   font-size: clamp(16px, 3vw, 26px);
@@ -96,7 +94,6 @@
   margin: 0 0 24px;
   line-height: 1.35;
 }
-
 
 .contenedor-opciones {
   display: grid;
@@ -142,7 +139,6 @@
   pointer-events: none;
 }
 
-
 .mensaje-retroalimentacion {
   margin-top: 18px;
   padding: 10px 16px;
@@ -174,7 +170,6 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-
 .boton-siguiente {
   margin-top: 16px !important;
   width: auto !important;
@@ -195,18 +190,13 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-
 .caja-resultado {
   text-align: center;
   gap: 12px;
 }
 
-.resultado-screen {
-  position: relative;
-  width: 100vw;
-  min-height: 100vh;
-  overflow: hidden;
-  background-color: black;
+.titulo-resultado {
+  font-size: clamp(32px, 6vw, 52px);
 }
 
 .meta-resultado {
@@ -235,18 +225,15 @@
   justify-content: center;
 }
 
-
 .sin-config-box {
   text-align: center;
   gap: 20px;
 }
 
-
 .error-box {
   text-align: center;
   gap: 20px;
 }
-
 
 .cargando-texto {
   color: white;
@@ -255,7 +242,6 @@
   letter-spacing: 3px;
   text-align: center;
 }
-
 
 @media (max-width: 480px) {
   .contenedor-opciones {

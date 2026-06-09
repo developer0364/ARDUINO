@@ -1,0 +1,19 @@
+.pantalla-wrapper {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: black;
+}
+
+.pantalla-fondo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.pantalla-contenido {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+}
