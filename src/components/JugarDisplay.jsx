@@ -38,18 +38,16 @@ export default function JugarDisplay() {
   const [juegoTerminado, setJuegoTerminado] = useState(false);
 
   const ultimaCargaRef = useRef('');
-  const hidDeviceRef = useRef(null);
+  const serialPortRef = useRef(null);
+  const writerRef = useRef(null);
   const [arduinoConectado, setArduinoConectado] = useState(false);
 
   const conectarArduino = async () => {
     try {
-      const devices = await navigator.hid.requestDevice({
-        filters: [{ vendorId: 0x16C0, productId: 0x05DF }]
-      });
-      if (!devices.length) return;
-      const device = devices[0];
-      await device.open();
-      hidDeviceRef.current = device;
+      const port = await navigator.serial.requestPort();
+      await port.open({ baudRate: 9600 });
+      serialPortRef.current = port;
+      writerRef.current = port.writable.getWriter();
       setArduinoConectado(true);
     } catch (err) {
       console.error('Arduino no conectado:', err);
@@ -57,10 +55,13 @@ export default function JugarDisplay() {
   };
 
   const enviarLED = async (esCorrecta) => {
-    if (!hidDeviceRef.current) return;
-    const data = new Uint8Array(8);
-    data[0] = esCorrecta ? 0x47 : 0x52; // 'G' o 'R'
-    await hidDeviceRef.current.sendReport(0, data);
+    if (!writerRef.current) return;
+    try {
+      const cmd = esCorrecta ? 'G' : 'R';
+      await writerRef.current.write(new TextEncoder().encode(cmd));
+    } catch (err) {
+      console.error('Error enviando al Arduino:', err);
+    }
   };
 
   const cargarPreguntas = useCallback(async () => {

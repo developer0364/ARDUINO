@@ -1,10 +1,10 @@
-#include <DigiUSB.h>
+#include <DigiCDC.h>
 
 const int VERDE = 0;
 const int ROJO  = 4;
 
 void setup() {
-  DigiUSB.begin();
+  SerialUSB.begin();
   pinMode(VERDE, OUTPUT);
   pinMode(ROJO,  OUTPUT);
   digitalWrite(VERDE, LOW);
@@ -12,16 +12,16 @@ void setup() {
 }
 
 void loop() {
-  DigiUSB.refresh();
-  if (DigiUSB.available()) {
-    int cmd = DigiUSB.read();
+  SerialUSB.refresh();
+  if (SerialUSB.available()) {
+    int cmd = SerialUSB.read();
     if (cmd == 'G') {
       digitalWrite(VERDE, HIGH);
-      DigiUSB.delay(4000);
+      SerialUSB.delay(4000);
       digitalWrite(VERDE, LOW);
     } else if (cmd == 'R') {
       digitalWrite(ROJO, HIGH);
-      DigiUSB.delay(4000);
+      SerialUSB.delay(4000);
       digitalWrite(ROJO, LOW);
     }
   }
