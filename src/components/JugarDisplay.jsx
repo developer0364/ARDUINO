@@ -4,7 +4,12 @@ import Pantalla from "./Pantalla";
 import { useDatosTrivia } from "./datos";
 import { fetchQuestions } from "../services/api";
 import { DIFFICULTY_MAP } from "../constants/config";
-import { BotonVolver, BotonArduino, BotonSiguiente, BotonesResultado } from "./Botones";
+import {
+  BotonVolver,
+  BotonArduino,
+  BotonSiguiente,
+  BotonesResultado,
+} from "./Botones";
 import { transformarPregunta } from "../utils/triviaUtils";
 import "../App.css";
 import "./jugarDisplay.css";
@@ -35,7 +40,13 @@ function BarraProgreso({ actual, total }) {
   );
 }
 
-function OpcionesRespuesta({ opciones, respondido, respuesta, opcionElegida, onSeleccionar }) {
+function OpcionesRespuesta({
+  opciones,
+  respondido,
+  respuesta,
+  opcionElegida,
+  onSeleccionar,
+}) {
   return (
     <div className="contenedor-opciones">
       {opciones.map((opcion) => {
@@ -62,12 +73,15 @@ function OpcionesRespuesta({ opciones, respondido, respuesta, opcionElegida, onS
 
 function MensajeRetroalimentacion({ esCorrecta, respuestaCorrecta }) {
   return (
-    <div className={`mensaje-retroalimentacion ${esCorrecta ? "retro-correcta" : "retro-incorrecta"}`}>
-      {esCorrecta ? "✅ ¡CORRECTO! +10 PUNTOS" : `❌ INCORRECTO. ERA: ${respuestaCorrecta}`}
+    <div
+      className={`mensaje-retroalimentacion ${esCorrecta ? "retro-correcta" : "retro-incorrecta"}`}
+    >
+      {esCorrecta
+        ? "✅ ¡CORRECTO! +10 PUNTOS"
+        : `❌ INCORRECTO. ERA: ${respuestaCorrecta}`}
     </div>
   );
 }
-
 
 export default function JugarDisplay() {
   const navegar = useNavigate();
@@ -107,7 +121,7 @@ export default function JugarDisplay() {
       if (device.configuration === null) await device.selectConfiguration(1);
       try {
         await device.claimInterface(0);
-      } catch (_) {}
+      } catch {}
       setDispositivoUSB(device);
     } catch (err) {
       console.error("Error de conexión WebUSB:", err);
@@ -127,7 +141,7 @@ export default function JugarDisplay() {
       };
       setError(
         mensajes[data?.response_code] ??
-          "No se pudo conectar con el servidor. Revisá tu conexión."
+          "No se pudo conectar con el servidor. Revisá tu conexión.",
       );
       setCargando(false);
       return;
@@ -141,10 +155,11 @@ export default function JugarDisplay() {
     const clave = `${Tematica}-${Dificultad}`;
     if (ultimaCargaRef.current === clave) return;
     ultimaCargaRef.current = clave;
-    cargarPreguntas();
+    void cargarPreguntas();
   }, [Tematica, Dificultad, cargarPreguntas]);
 
-  const labelCategoria = categorias.find((c) => c.value === Tematica)?.label || "";
+  const labelCategoria =
+    categorias.find((c) => c.value === Tematica)?.label || "";
 
   if (!Tematica || !Dificultad) {
     return (
@@ -195,7 +210,7 @@ export default function JugarDisplay() {
     setRespondido(true);
     if (opcion === preguntaActual.respuesta) {
       setPuntaje((p) => p + 10);
-      enviarSenalHardware("V");
+      enviarSenalHardware("G");
     } else {
       enviarSenalHardware("R");
     }
@@ -230,7 +245,10 @@ export default function JugarDisplay() {
   }
 
   return (
-    <Pantalla colors={["#527cdc", "#5f115c"]} contentClassName="top jugar-content">
+    <Pantalla
+      colors={["#527cdc", "#5f115c"]}
+      contentClassName="top jugar-content"
+    >
       <BotonVolver onClick={() => navegar("/")} />
       <BotonArduino conectado={dispositivoUSB} onClick={conectarUSB} />
       <div className="encabezado-trivia">
