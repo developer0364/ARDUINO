@@ -25,17 +25,6 @@
   bottom: 16px;
   right: 16px;
   z-index: 100;
-  width: auto !important;
-  height: auto !important;
-  padding: 8px 16px !important;
-  font-size: 14px !important;
-  background: rgba(255, 255, 255, 0.1) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  backdrop-filter: blur(10px);
-  border-radius: 8px !important;
-  color: white;
-  cursor: pointer;
-  font-family: var(--fuente-titulo);
 }
 
 .encabezado-trivia {
@@ -225,12 +214,7 @@
   justify-content: center;
 }
 
-.sin-config-box {
-  text-align: center;
-  gap: 20px;
-}
-
-.error-box {
+.pantalla-mensaje-box {
   text-align: center;
   gap: 20px;
 }
